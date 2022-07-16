@@ -1,6 +1,7 @@
 package ControlWork4;
 
 import java.util.Objects;
+import java.util.Random;
 
 public class Cat implements Functionable{
     private String name;
@@ -17,8 +18,6 @@ public class Cat implements Functionable{
         this.fedState = fedState;
         this.delightState = delightState;
         this.healthState = healthState;
-        this.functionState = true;
-        this.averageState = (fedState+delightState+healthState)/3;
     }
 
     @Override
@@ -90,18 +89,127 @@ public class Cat implements Functionable{
         this.functionState = functionState;
     }
 
-    @Override
-    public void feedCat(Cat cat) {
-
+    public int countAverage(Cat cat){
+        int average = 0;
+        average = (cat.getFedState()+cat.getHealthState()+cat.getDelightState())/3;
+        return average;
     }
 
     @Override
-    public void playWithCat(Cat cat) {
-
+    public Cat feedCat(Cat cat) {
+        Random r = new Random();
+        int random = r.nextInt(6) +1;
+        if(random <= 3) {
+            if (cat.getAge() < 6) {
+                cat.setFedState(cat.getFedState() + 7);
+            } else if (cat.getAge() >= 6 && cat.getAge() < 10) {
+                cat.setFedState(cat.getFedState() + 5);
+            } else {
+                cat.setFedState(cat.getFedState() + 4);
+            }
+        }else {
+            if (cat.getAge() < 6) {
+                cat.setFedState(cat.getFedState() + 7);
+                cat.setDelightState(cat.getDelightState()-1);
+                cat.setHealthState(cat.getHealthState()-1);
+            } else if (cat.getAge() >= 6 && cat.getAge() < 10) {
+                cat.setFedState(cat.getFedState() + 5);
+                cat.setDelightState(cat.getDelightState()-2);
+                cat.setHealthState(cat.getHealthState()-2);
+            } else {
+                cat.setFedState(cat.getFedState() + 4);
+                cat.setDelightState(cat.getDelightState()-3);
+                cat.setHealthState(cat.getHealthState()-3);
+            }
+            System.out.printf("%s was poisoned",cat.getName());
+        }
+        return cat;
     }
 
     @Override
-    public void cureCat(Cat cat) {
+    public Cat playWithCat(Cat cat) {
+        Random r = new Random();
+        int random = r.nextInt(6) +1;
+        if(random <= 3){
+            if(cat.getAge() < 6){
+                cat.setDelightState(cat.getDelightState()+7);
+                cat.setHealthState(cat.getHealthState()+7);
+                cat.setFedState(cat.getFedState()-3);
+            }else if(cat.getAge() >= 6 && cat.getAge() < 10){
+                cat.setDelightState(cat.getDelightState()+5);
+                cat.setHealthState(cat.getHealthState()+5);
+                cat.setFedState(cat.getFedState()-5);
+            }else{
+                cat.setDelightState(cat.getDelightState()+4);
+                cat.setHealthState(cat.getHealthState()+4);
+                cat.setFedState(cat.getFedState()-6);
+            }
+        }else{
+            if(cat.getAge() < 6){
+                cat.setDelightState(cat.getDelightState()-2);
+                cat.setHealthState(cat.getHealthState()-2);
+                cat.setFedState(cat.getFedState()-4);
+            }else if(cat.getAge() >= 6 && cat.getAge() < 10){
+                cat.setDelightState(cat.getDelightState()-2);
+                cat.setHealthState(cat.getHealthState()-3);
+                cat.setFedState(cat.getFedState()-6);
+            }else{
+                cat.setDelightState(cat.getDelightState()-2);
+                cat.setHealthState(cat.getHealthState()-4);
+                cat.setFedState(cat.getFedState()-7);
+            }
+            System.out.printf("You accidentally hurt %s",cat.getName());
+        }
+        return cat;
+    }
 
+    @Override
+    public Cat cureCat(Cat cat) {
+        Random r = new Random();
+        int random = r.nextInt(6) +1;
+        if(random <= 3) {
+            if (cat.getAge() < 6) {
+                cat.setHealthState(cat.getHealthState() + 7);
+                cat.setDelightState(cat.getDelightState() - 3);
+                cat.setFedState(cat.getFedState() - 3);
+            } else if (cat.getAge() >= 6 && cat.getAge() < 10) {
+                cat.setHealthState(cat.getHealthState() + 5);
+                cat.setDelightState(cat.getDelightState() - 5);
+                cat.setFedState(cat.getFedState() - 5);
+            } else {
+                cat.setHealthState(cat.getHealthState() + 4);
+                cat.setDelightState(cat.getDelightState() - 6);
+                cat.setFedState(cat.getFedState() - 6);
+            }
+        }else {
+            if (cat.getAge() < 6) {
+                cat.setHealthState(cat.getHealthState() - 2);
+                cat.setDelightState(cat.getDelightState() - 4);
+                cat.setFedState(cat.getFedState() - 4);
+            } else if (cat.getAge() >= 6 && cat.getAge() < 10) {
+                cat.setHealthState(cat.getHealthState() - 2);
+                cat.setDelightState(cat.getDelightState() - 6);
+                cat.setFedState(cat.getFedState() - 6);
+            } else {
+                cat.setHealthState(cat.getHealthState() - 2);
+                cat.setDelightState(cat.getDelightState() - 6);
+                cat.setFedState(cat.getFedState() - 6);
+            }
+            System.out.printf("Doctor has given wrong pills to %s accidentally",cat.getName());
+        }
+        return cat;
+    }
+
+    @Override
+    public String toString() {
+        return "Cat{" +
+                "name='" + name + '\'' +
+                ", age=" + age +
+                ", fedState=" + fedState +
+                ", delightState=" + delightState +
+                ", healthState=" + healthState +
+                ", functionState=" + functionState +
+                ", averageState=" + averageState +
+                '}';
     }
 }
