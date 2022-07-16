@@ -7,7 +7,7 @@ public class Main {
         List<Cat> cats = new ArrayList<>();
         cats.add(new Cat("Lisa",5,35,50,85));
         cats.add(new Cat("Rose",8,55,35,65));
-        cats.add(new Cat("Lord",13,65,45,10));
+        cats.add(new Cat("Lord",13,65,45,40));
         for (Cat c:
              cats) {
             c.setFunctionState(true);
