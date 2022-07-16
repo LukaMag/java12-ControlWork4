@@ -7,7 +7,7 @@ public class Main {
         List<Cat> cats = new ArrayList<>();
         cats.add(new Cat("Lisa",5,35,50,85));
         cats.add(new Cat("Rose",8,55,35,65));
-        cats.add(new Cat("Lord",13,65,45,35));
+        cats.add(new Cat("Lord",13,65,45,10));
         for (Cat c:
              cats) {
             c.setFunctionState(true);
@@ -35,7 +35,8 @@ public class Main {
         }
     }
 
-    static List<Cat> commands(String s,List<Cat> cats)throws EmptyStackException{
+    static List<Cat> commands(String s,List<Cat> catsAlive)throws EmptyStackException{
+        List<Cat> cats = new ArrayList<>(catsAlive);
         Random r = new Random();
         Scanner sc = new Scanner(System.in);
         String name = "";
@@ -143,7 +144,6 @@ public class Main {
                     if(cat.isFunctionState()) {
                         cat = cat.feedCat(cat);
                         cat.setFunctionState(false);
-                        System.out.printf("You've fed a %s, %d years old\n", cat.getName(), cat.getAge());
                     }else{
                         System.out.printf("You've fed a %s already today\n",cat.getName());
                     }
@@ -152,7 +152,6 @@ public class Main {
                     if(cat.isFunctionState()) {
                         cat = cat.playWithCat(cat);
                         cat.setFunctionState(false);
-                        System.out.printf("You've played with %s, %d years old\n", cat.getName(), cat.getAge());
                     }else{
                         System.out.printf("You've played with %s already today\n",cat.getName());
                     }
@@ -161,7 +160,6 @@ public class Main {
                     if(cat.isFunctionState()){
                         cat = cat.cureCat(cat);
                         cat.setFunctionState(false);
-                        System.out.printf("You've taken care of %s, %d years old\n",cat.getName(),cat.getAge());
                     }else{
                         System.out.printf("You've taken care of %s already today\n",cat.getName());
                     }

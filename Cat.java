@@ -102,11 +102,15 @@ public class Cat implements Functionable{
         if(random <= 3) {
             if (cat.getAge() < 6) {
                 cat.setFedState(cat.getFedState() + 7);
+                cat.setDelightState(cat.getDelightState()+7);
             } else if (cat.getAge() >= 6 && cat.getAge() < 10) {
                 cat.setFedState(cat.getFedState() + 5);
+                cat.setDelightState(cat.getDelightState()+5);
             } else {
                 cat.setFedState(cat.getFedState() + 4);
+                cat.setDelightState(cat.getDelightState()+4);
             }
+            System.out.printf("You've fed a %s, %d years old\n", cat.getName(), cat.getAge());
         }else {
             if (cat.getAge() < 6) {
                 cat.setFedState(cat.getFedState() + 7);
@@ -144,6 +148,7 @@ public class Cat implements Functionable{
                 cat.setHealthState(cat.getHealthState()+4);
                 cat.setFedState(cat.getFedState()-6);
             }
+            System.out.printf("You've played with %s, %d years old\n", cat.getName(), cat.getAge());
         }else{
             if(cat.getAge() < 6){
                 cat.setDelightState(cat.getDelightState()-2);
@@ -181,6 +186,7 @@ public class Cat implements Functionable{
                 cat.setDelightState(cat.getDelightState() - 6);
                 cat.setFedState(cat.getFedState() - 6);
             }
+            System.out.printf("You've taken care of %s, %d years old\n",cat.getName(),cat.getAge());
         }else {
             if (cat.getAge() < 6) {
                 cat.setHealthState(cat.getHealthState() - 2);
